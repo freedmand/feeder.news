@@ -1,5 +1,6 @@
 import { parseFeed } from 'htmlparser2';
 import { decode } from 'html-entities';
+import { Parser } from 'htmlparser2';
 
 const proxy = 'https://proxy.rssfeed.workers.dev/';
 
@@ -10,6 +11,18 @@ export interface Item {
 	description: string;
 	link: string;
 	image?: string;
+}
+
+export function extractText(html: string): string {
+	let result = '';
+	const parser = new Parser({
+		ontext(text) {
+			result += text;
+		}
+	});
+	parser.write(html);
+	parser.end();
+	return result.trim();
 }
 
 export async function fetchRssFeed(url: string): Promise<Rss> {
@@ -64,8 +77,8 @@ export async function fetchRssFeed(url: string): Promise<Rss> {
 			image = imageMap[item.link];
 		}
 		return {
-			title: decode(item.title ?? ''),
-			description: decode(item.description ?? ''),
+			title: extractText(decode(item.title ?? '')),
+			description: extractText(decode(item.description ?? '')),
 			link: item.link,
 			image
 		};
