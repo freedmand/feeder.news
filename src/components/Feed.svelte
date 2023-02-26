@@ -22,8 +22,8 @@
 			<div class="border-gray-600 border-b px-4">
 				<a href={item.link} target="_blank" rel="noreferrer"
 					><div class="my-6">
-						<h3 class="font-bold text-base leading-6 mb-1">{item.title}</h3>
-						<p class="text-gray-300 text-sm">{item.description}</p>
+						<h3 class="font-bold text-base leading-6 mb-1 headline">{item.title}</h3>
+						<p class="text-gray-300 text-sm leading-5 mt-1">{item.description}</p>
 						{#if item.image}
 							<img
 								src={item.image}

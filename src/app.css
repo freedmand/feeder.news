@@ -12,5 +12,9 @@ html {
 }
 
 .pane {
-	@apply flex-shrink-0 border-gray-600 border-r-4 last:border-none w-60 flex flex-col max-h-screen;
+	@apply flex-shrink-0 border-gray-600 border-r-4 last:border-none w-72 flex flex-col max-h-screen;
+}
+
+.headline {
+	font-family: 'Libre Baskerville', serif;
 }
