@@ -35,6 +35,11 @@ export const feeds: Feed[] = [
 		section: 'World',
 		feed: 'http://feeds.bbci.co.uk/news/world/rss.xml'
 	},
+	// {
+	// 	source: 'Google News',
+	// 	section: 'Top stories',
+	// 	feed: 'https://news.google.com/rss?hl=en-US&gl=US&ceid=US:en'
+	// },
 	{
 		source: 'Hacker News',
 		section: 'Top',

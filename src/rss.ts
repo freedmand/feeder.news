@@ -1,6 +1,7 @@
 import { parseFeed } from 'htmlparser2';
 import { decode } from 'html-entities';
 import { Parser } from 'htmlparser2';
+import type { Feed } from './feeds';
 
 const proxy = 'https://proxy.rssfeed.workers.dev/';
 
@@ -10,6 +11,7 @@ export interface Item {
 	title: string;
 	description: string;
 	link: string;
+	feed: Feed;
 	image?: string;
 }
 
@@ -25,7 +27,8 @@ export function extractText(html: string): string {
 	return result.trim();
 }
 
-export async function fetchRssFeed(url: string): Promise<Rss> {
+export async function fetchRssFeed(feedObject: Feed): Promise<Rss> {
+	const url = feedObject.feed;
 	const proxyUrl = `${proxy}?url=${encodeURIComponent(url)}`;
 
 	const response = await fetch(proxyUrl);
@@ -80,6 +83,7 @@ export async function fetchRssFeed(url: string): Promise<Rss> {
 			title: extractText(decode(item.title ?? '')),
 			description: extractText(decode(item.description ?? '')),
 			link: item.link,
+			feed: feedObject,
 			image
 		};
 	});

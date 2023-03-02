@@ -38,6 +38,9 @@
 	"type": "module",
 	"dependencies": {
 		"html-entities": "^2.3.3",
-		"htmlparser2": "^8.0.1"
+		"htmlparser2": "^8.0.1",
+		"pagerank.js": "^1.0.2",
+		"wink-eng-lite-web-model": "^1.4.3",
+		"wink-nlp": "^1.13.0"
 	}
 }
