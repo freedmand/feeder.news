@@ -18,22 +18,21 @@
 		const promises = feeds.map(async (feed) => {
 			const items = await fetchRssFeed(feed);
 			itemsByFeed[feed.feed] = items;
+			updateAutoFeed();
 		});
 
 		return Promise.all(promises);
 	}
 
-	onMount(async () => {
-		await fetchFeeds();
-
-		console.log({ feeds, itemsByFeed });
-
-		// Done - do NLP
+	function updateAutoFeed() {
 		itemsByFeed[autoTopStoriesFeed.feed] = constructAutoFeed(
 			feeds,
 			itemsByFeed as { [feed: string]: Item[] }
 		);
-		console.log(itemsByFeed[autoTopStoriesFeed.feed]);
+	}
+
+	onMount(async () => {
+		await fetchFeeds();
 	});
 </script>
 
